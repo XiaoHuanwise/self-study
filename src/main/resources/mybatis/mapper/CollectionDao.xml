@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twt.selfstudy.dao.CollectionDao">
+  <resultMap id="BaseResultMap" type="com.twt.selfstudy.pojo.entity.CollectionKey">
+    <id column="classroom_id" jdbcType="VARCHAR" property="classroomId" />
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.twt.selfstudy.pojo.entity.CollectionKey">
+    delete from collection
+    where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectCollections" resultType="com.twt.selfstudy.pojo.entity.CollectionKey">
+    select classroom_id
+    from collection
+    where user_id = #{userId,jdbcType=VARCHAR}
+    order by classroom_id
+  </select>
+  <select id="selectCollection" resultType="com.twt.selfstudy.pojo.entity.CollectionKey">
+    select user_id,classroom_id
+    from collection
+    where user_id = #{user_id,jdbcType=VARCHAR}
+    and classroom_id = #{classroom_id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" keyColumn="classroom_id" keyProperty="classroomId" parameterType="com.twt.selfstudy.pojo.entity.CollectionKey" useGeneratedKeys="true">
+    insert into collection (user_id)
+    values (#{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="classroom_id" keyProperty="classroomId" parameterType="com.twt.selfstudy.pojo.entity.CollectionKey" useGeneratedKeys="true">
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertCollection">
+    insert into collection (user_id,classroom_id)
+    value (#{user_id,jdbcType=VARCHAR},#{classroom_id,jdbcType=VARCHAR})
+  </insert>
+</mapper>

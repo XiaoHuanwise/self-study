@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twt.selfstudy.dao.EduBTeachbuildingDao">
+  <resultMap id="BaseResultMap" type="com.twt.selfstudy.pojo.entity.EduBTeachbuilding">
+    <id column="building_id" jdbcType="CHAR" property="buildingId" />
+    <result column="building" jdbcType="VARCHAR" property="building" />
+    <result column="campus_id" jdbcType="CHAR" property="campusId" />
+    <result column="area_id" jdbcType="CHAR" property="areaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    building_id, building, campus_id, area_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from edu_b_teachbuilding
+    where building_id = #{buildingId,jdbcType=CHAR}
+  </select>
+  <select id="selectAllBuildings" resultType="com.twt.selfstudy.pojo.entity.EduBTeachbuilding">
+    select
+    <include refid="Base_Column_List" />
+    from edu_b_teachbuilding
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from edu_b_teachbuilding
+    where building_id = #{buildingId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" keyColumn="building_id" keyProperty="buildingId" parameterType="com.twt.selfstudy.pojo.entity.EduBTeachbuilding" useGeneratedKeys="true">
+    insert into edu_b_teachbuilding (building, campus_id, area_id
+      )
+    values (#{building,jdbcType=VARCHAR}, #{campusId,jdbcType=CHAR}, #{areaId,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="building_id" keyProperty="buildingId" parameterType="com.twt.selfstudy.pojo.entity.EduBTeachbuilding" useGeneratedKeys="true">
+    insert into edu_b_teachbuilding
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="building != null">
+        building,
+      </if>
+      <if test="campusId != null">
+        campus_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="building != null">
+        #{building,jdbcType=VARCHAR},
+      </if>
+      <if test="campusId != null">
+        #{campusId,jdbcType=CHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.twt.selfstudy.pojo.entity.EduBTeachbuilding">
+    update edu_b_teachbuilding
+    <set>
+      <if test="building != null">
+        building = #{building,jdbcType=VARCHAR},
+      </if>
+      <if test="campusId != null">
+        campus_id = #{campusId,jdbcType=CHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=CHAR},
+      </if>
+    </set>
+    where building_id = #{buildingId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.twt.selfstudy.pojo.entity.EduBTeachbuilding">
+    update edu_b_teachbuilding
+    set building = #{building,jdbcType=VARCHAR},
+      campus_id = #{campusId,jdbcType=CHAR},
+      area_id = #{areaId,jdbcType=CHAR}
+    where building_id = #{buildingId,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://202.113.13.169:3306/com-twt-selfstudy?serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: twt-selfstudy
+    password: LGE2fmx9weWV7xeG
+    type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    encoding: utf-8
+    suffix: .html
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations: classpath:/static/,/templates/
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+

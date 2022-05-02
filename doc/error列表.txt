@@ -1,0 +1,13 @@
+error_code: 0	#没有错误！吔！
+error_code: 1	#目前错误代码包含的错误信息多，有待筛选分类，可归为其他类错误
+error_code: 2	#getDayData接口未查到符合参数条件的数据，目前记为范围超时间域，表示该参数时间所有教室都无占用
+error_code: 5	#无ticket或domain
+error_code: 6	#错误的app_key或app_secret
+error_code: 7	#无token，请登录获取token
+error_code: 8	#token失效，请重新登录获取token
+error_code: 9	#收藏列表为空
+error_code: 10	#（删除收藏时）无此收藏，删除失败
+
+//以下是前端部分
+error_code: 3	#（登录接口）用户不存在
+error_code: 4	#（登录接口）账户或密码错误

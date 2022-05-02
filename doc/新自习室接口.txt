@@ -1,0 +1,145 @@
+GET	https://selfstudy.twt.edu.cn/getBuildingList	
+#获取所有教学楼信息
+{
+    "error_code":-1,
+    "message": "success",
+    "data":[
+        {
+            "building_id":"0015",
+            "building":"23楼",
+            "campus_id":"1",
+            "areas":[
+                {
+	    "area_id": "A",	//区分AB区
+	    "classrooms": [
+	        {
+		"classroom_id": "23102",
+		"classroom": "102",
+		"capacity": "135"
+	        },
+	        ...
+	    ]
+	},
+	...
+            ],
+        },
+        ...
+    ]
+}
+
+
+GET	https://selfstudy.twt.edu.cn/getDayData/18191/9/6	/term/week/day	
+#获取当日可上自习的教室，该教室的一周内信息都会返回
+{
+    "error_code": 0,
+    "message": "success",
+    "data": [
+        {
+            "building_id": "0015",
+            "building":"23楼",
+            "campus_id":"1",
+            "areas": [
+	{
+	    "area_id": "-1",
+	    "classrooms": [
+	        {
+	            "classroom_id": "23102",
+	            "status":"000000000000",
+	            "classroom": "102"
+	        },
+	        ...
+	    ]
+	},
+	...
+            ]
+        },
+        ...
+    ]
+}
+
+
+/*
+以下接口在访问时需要在header中添加token字段，值为登录获取的token
+header中还应含有以下字段
+	domain="xxx.xxx.xxx"
+	ticket="......"
+注：对于移动端，请看张浚彪发的接口文档
+       对于网页端，domain="selfstudy.twt.edu.cn"，ticket=base64(app_key + '.' + app_secret)，其中，app_key="lemon"，app_secret="7a858ff32628843043524b729cedfaa70623efc9"
+*/
+
+
+POST	https://selfstudy.twt.edu.cn/addCollection	#添加收藏教室
+{
+    "classroom_id": "23102"
+}
+{
+    "error_code": 0,
+    "message": "收藏成功",
+    "data": null
+}
+
+
+GET	https://selfstudy.twt.edu.cn/getCollections	#获取收藏的教室
+{
+    "error_code": 0,
+    "message": "获取成功",
+    "data": {
+        "classroom_id": ["23102","23103"]		#classroom_id组成的数组
+    }
+}
+
+
+POST	https://selfstudy.twt.edu.cn/deleteCollection	#删除某收藏的教室
+{
+    "classroom_id": "23102"
+}
+{
+    "error_code": 0,
+    "message": "删除成功",
+    "data": null
+}
+
+
+//以下是前端接口，当然，这几个接口不要求token，但是也要求domain和ticket
+POST	https://selfstudy.twt.edu.cn/login/common	#账号密码方式登录
+{
+    "account": "3019******",	#学号或昵称或邮箱（好像手机号也可以）
+    "password": "123abc"	#密码
+}
+{
+    "error_code": 0,
+    "message": "登录成功",
+    "data": {
+        "token": "...",
+        "userNumber": "3019******"	#学号
+    }
+}
+
+
+POST	https://selfstudy.twt.edu.cn/login/phoneMsg	#获取手机短信验证码（用以短信登录）
+{
+    "phone": "12345678910"
+}
+{
+    "error_code": 0,
+    "message": "发送成功",
+    "data": {
+        "Cookie": "JSESSIONID=EC4A08D6DD529888328B5A256D68360F"	#name=value
+    }
+}
+
+
+//这个接口需要将上一个接口的Cookie写进header
+POST	https://selfstudy.twt.edu.cn/login/phone	#验证短信验证码进行登录
+{
+    "phone": "12345678910",
+    "code": "1234"
+}
+{
+    "error_code": 0,
+    "message": "登录成功",
+    "data": {
+        "token": "...",
+        "userNumber": "3019******"
+    }
+}

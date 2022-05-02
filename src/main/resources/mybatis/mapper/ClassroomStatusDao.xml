@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twt.selfstudy.dao.ClassroomStatusDao">
+
+  <resultMap id="BaseResultMap" type="com.twt.selfstudy.pojo.entity.ClassroomStatus">
+    <id column="classroom_id" jdbcType="VARCHAR" property="classroomId" />
+    <id column="week" jdbcType="VARCHAR" property="week" />
+    <id column="day" jdbcType="VARCHAR" property="day" />
+    <id column="term" jdbcType="VARCHAR" property="term" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+
+  <resultMap id="ClassroomStatus" type="com.twt.selfstudy.pojo.entity.ClassroomStatus">
+    <result column="classroom_id" jdbcType="CHAR" property="classroomId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="classroom" jdbcType="CHAR" property="classroom" />
+    <result column="capacity" jdbcType="INTEGER" property="capacity" />
+    <result property="building" column="building" jdbcType="VARCHAR" />
+    <result column="building_id" jdbcType="CHAR" property="buildingId" />
+    <result jdbcType="CHAR" column="campus_id" property="campusId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    classroom_id, week, `day`, term, `status`
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatusKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from classroom_status
+    where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and week = #{week,jdbcType=VARCHAR}
+      and `day` = #{day,jdbcType=VARCHAR}
+      and term = #{term,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectClassroomStatus" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatus" resultMap="ClassroomStatus">
+    select
+      CS.classroom_id,CS.status,CC.classroom,CC.capacity,T.building,T.building_id, T.campus_id
+    from classroom_status AS CS, edu_b_course_classroom AS CC,edu_b_teachbuilding AS T
+    where CC.classroom_id = CS.classroom_id
+    AND T.building_id = CC.building_id
+    AND CS.term = #{term,jdbcType=CHAR} AND CS.week = #{week,jdbcType=VARCHAR} AND CS.day = #{day,jdbcType=VARCHAR}
+    AND CS.status != '111111111111'
+    order by building
+    asc
+  </select>
+    <select id="selectClassroomDayData" resultType="com.twt.selfstudy.pojo.entity.ClassroomDayData">
+      select `day`,status
+      from classroom_status
+      where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and week = #{week,jdbcType=VARCHAR}
+      and term = #{term,jdbcType=VARCHAR}
+      order by `day`
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatusKey">
+    delete from classroom_status
+    where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and week = #{week,jdbcType=VARCHAR}
+      and `day` = #{day,jdbcType=VARCHAR}
+      and term = #{term,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="classroom_id" keyProperty="classroomId" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatus" useGeneratedKeys="true">
+    insert into classroom_status (week, `day`, term, 
+      `status`)
+    values (#{week,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{term,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="classroom_id" keyProperty="classroomId" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatus" useGeneratedKeys="true">
+    insert into classroom_status
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="week != null">
+        week,
+      </if>
+      <if test="day != null">
+        `day`,
+      </if>
+      <if test="term != null">
+        term,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="week != null">
+        #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatus">
+    update classroom_status
+    <set>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and week = #{week,jdbcType=VARCHAR}
+      and `day` = #{day,jdbcType=VARCHAR}
+      and term = #{term,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.twt.selfstudy.pojo.entity.ClassroomStatus">
+    update classroom_status
+    set `status` = #{status,jdbcType=VARCHAR}
+    where classroom_id = #{classroomId,jdbcType=VARCHAR}
+      and week = #{week,jdbcType=VARCHAR}
+      and `day` = #{day,jdbcType=VARCHAR}
+      and term = #{term,jdbcType=VARCHAR}
+  </update>
+</mapper>
