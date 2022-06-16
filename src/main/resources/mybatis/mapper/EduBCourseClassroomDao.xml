@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.twt.selfstudy.dao.EduBCourseClassroomDao">
-  <resultMap id="BaseResultMap" type="com.twt.selfstudy.pojo.entity.EduBCourseClassroom">
+  <resultMap id="BaseResultMap" type="com.twt.selfstudy.entity.EduBCourseClassroom">
     <result column="term" jdbcType="CHAR" property="term" />
     <result column="classroom_id" jdbcType="CHAR" property="classroomId" />
     <result column="capacity" jdbcType="INTEGER" property="capacity" />
@@ -12,7 +12,7 @@
   <sql id="Base_Column_List">
     term,classroom_id,capacity,builiding_id,classroom_type_id,classroom
   </sql>
-  <insert id="insert" parameterType="com.twt.selfstudy.pojo.entity.EduBCourseClassroom">
+  <insert id="insert" parameterType="com.twt.selfstudy.entity.EduBCourseClassroom">
     insert into edu_b_course_classroom (term, classroom_id, capacity, 
       building_id, classroom_type_id, classroom
       )
@@ -20,7 +20,7 @@
       #{buildingId,jdbcType=CHAR}, #{classroomTypeId,jdbcType=CHAR}, #{classroom,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.twt.selfstudy.pojo.entity.EduBCourseClassroom">
+  <insert id="insertSelective" parameterType="com.twt.selfstudy.entity.EduBCourseClassroom">
     insert into edu_b_course_classroom
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="term != null">
@@ -63,7 +63,7 @@
       </if>
     </trim>
   </insert>
-    <select id="selectAllCourses" resultType="com.twt.selfstudy.pojo.entity.EduBCourseClassroom">
+    <select id="selectAllCourses" resultType="com.twt.selfstudy.entity.EduBCourseClassroom">
       select classroom_id,classroom,capacity,building_id
       from edu_b_course_classroom
       where classroom_id != ''

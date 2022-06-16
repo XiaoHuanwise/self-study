@@ -1,6 +1,6 @@
 package com.twt.selfstudy.service;
 
-import com.twt.selfstudy.pojo.entity.CollectionKey;
+import com.twt.selfstudy.entity.CollectionKey;
 
 import java.util.List;
 

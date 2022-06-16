@@ -2,8 +2,8 @@ package com.twt.selfstudy.service.impl;
 
 import com.twt.selfstudy.dao.EduBCourseClassroomDao;
 import com.twt.selfstudy.dao.EduBTeachbuildingDao;
-import com.twt.selfstudy.pojo.entity.EduBCourseClassroom;
-import com.twt.selfstudy.pojo.entity.EduBTeachbuilding;
+import com.twt.selfstudy.entity.EduBCourseClassroom;
+import com.twt.selfstudy.entity.EduBTeachbuilding;
 import com.twt.selfstudy.service.BuildingService;
 import org.springframework.stereotype.Service;
 

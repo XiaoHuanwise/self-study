@@ -1,8 +1,8 @@
 package com.twt.selfstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.twt.selfstudy.pojo.entity.LoginResponse;
-import com.twt.selfstudy.pojo.entity.Response;
+import com.twt.selfstudy.entity.LoginResponse;
+import com.twt.selfstudy.entity.Response;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

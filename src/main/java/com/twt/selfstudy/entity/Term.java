@@ -1,4 +1,4 @@
-package com.twt.selfstudy.pojo.entity;
+package com.twt.selfstudy.entity;
 
 public class Term {
     static private String term = "21221";

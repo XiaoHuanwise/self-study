@@ -1,8 +1,8 @@
 package com.twt.selfstudy.dao;
 
-import com.twt.selfstudy.pojo.entity.ClassroomDayData;
-import com.twt.selfstudy.pojo.entity.ClassroomStatus;
-import com.twt.selfstudy.pojo.entity.ClassroomStatusKey;
+import com.twt.selfstudy.entity.ClassroomDayData;
+import com.twt.selfstudy.entity.ClassroomStatus;
+import com.twt.selfstudy.entity.ClassroomStatusKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

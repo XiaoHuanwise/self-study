@@ -1,7 +1,7 @@
 package com.twt.selfstudy.service;
 
-import com.twt.selfstudy.pojo.entity.EduBCourseClassroom;
-import com.twt.selfstudy.pojo.entity.EduBTeachbuilding;
+import com.twt.selfstudy.entity.EduBCourseClassroom;
+import com.twt.selfstudy.entity.EduBTeachbuilding;
 
 import java.util.List;
 

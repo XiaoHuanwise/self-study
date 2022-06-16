@@ -1,8 +1,9 @@
 package com.twt.selfstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.twt.selfstudy.pojo.entity.*;
-import com.twt.selfstudy.service.BuildingService;
+import com.twt.selfstudy.entity.ClassroomDayData;
+import com.twt.selfstudy.entity.ClassroomStatus;
+import com.twt.selfstudy.entity.*;
 import com.twt.selfstudy.service.ClassService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;

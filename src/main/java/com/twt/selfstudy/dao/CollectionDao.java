@@ -1,6 +1,6 @@
 package com.twt.selfstudy.dao;
 
-import com.twt.selfstudy.pojo.entity.CollectionKey;
+import com.twt.selfstudy.entity.CollectionKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

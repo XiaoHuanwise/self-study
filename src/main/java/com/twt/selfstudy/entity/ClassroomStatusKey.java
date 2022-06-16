@@ -1,4 +1,4 @@
-package com.twt.selfstudy.pojo.entity;
+package com.twt.selfstudy.entity;
 
 import java.io.Serializable;
 

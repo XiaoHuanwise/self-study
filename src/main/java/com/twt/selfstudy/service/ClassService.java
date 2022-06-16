@@ -1,7 +1,7 @@
 package com.twt.selfstudy.service;
 
-import com.twt.selfstudy.pojo.entity.ClassroomDayData;
-import com.twt.selfstudy.pojo.entity.ClassroomStatus;
+import com.twt.selfstudy.entity.ClassroomDayData;
+import com.twt.selfstudy.entity.ClassroomStatus;
 
 import java.util.List;
 

@@ -1,14 +1,11 @@
 package com.twt.selfstudy.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.twt.selfstudy.dao.CollectionDao;
-import com.twt.selfstudy.pojo.entity.CollectionKey;
+import com.twt.selfstudy.entity.CollectionKey;
 import com.twt.selfstudy.service.CollectionService;
-import com.twt.selfstudy.service.FunctionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.lang.reflect.Field;
 import java.util.List;
 
 @Service

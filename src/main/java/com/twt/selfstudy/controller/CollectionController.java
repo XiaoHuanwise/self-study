@@ -1,14 +1,13 @@
 package com.twt.selfstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.twt.selfstudy.pojo.entity.CollectionKey;
-import com.twt.selfstudy.pojo.entity.LoginResponse;
-import com.twt.selfstudy.pojo.entity.Response;
+import com.twt.selfstudy.entity.CollectionKey;
+import com.twt.selfstudy.entity.LoginResponse;
+import com.twt.selfstudy.entity.Response;
 import com.twt.selfstudy.service.CollectionService;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
