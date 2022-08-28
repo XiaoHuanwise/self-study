@@ -30,6 +30,7 @@ public class ScheduledTask {
     }
 
     @Scheduled(cron = "0 0 2 * * ?")
+//    @Scheduled(initialDelay = 0, fixedDelay = 1000000000)
     @Transactional
     public void calWeekTemp() {
         System.out.println(new Date());
@@ -54,12 +55,13 @@ public class ScheduledTask {
                 int day = Integer.parseInt(eduOccupancy.getWeekday());
                 String courseWeek;
                 if (day == 7) {
+                    int strlen = eduOccupancy.getWeekState().length();
                     courseWeek = eduOccupancy.getWeekState()
-                            .substring(Term.getStartWeek(), Term.getStartWeek() + Term.getWeekLen() + 1);
+                            .substring(Term.getStartWeek(), Math.min(Term.getStartWeek() + Term.getWeekLen(), strlen));
                 }
                 else {
                     courseWeek = eduOccupancy.getWeekState()
-                            .substring(Term.getStartWeek() - 1, Term.getStartWeek() + Term.getWeekLen());
+                            .substring(Term.getStartWeek() - 1, Term.getStartWeek() + Term.getWeekLen() - 1);
                 }
                 FixedOccupy fixedOccupy = new FixedOccupy(Term.getTerm(), day, courseWeek, courseStart, courseEnd, classroomId);
                 scheduledTaskDao.insertFixedOccupy(fixedOccupy);
