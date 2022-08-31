@@ -31,7 +31,7 @@ public class ScheduledTask {
 
     @Scheduled(cron = "0 0 2 * * ?")
 //    @Scheduled(initialDelay = 0, fixedDelay = 1000000000)
-    @Transactional
+//    @Transactional
     public void calWeekTemp() {
         System.out.println(new Date());
         System.out.println("Update dao start.");
