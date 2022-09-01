@@ -29,7 +29,7 @@ public class ScheduledTask {
 
     }
 
-    @Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(cron = "0 10 6 * * ?")
 //    @Scheduled(initialDelay = 0, fixedDelay = 1000000000)
 //    @Transactional
     public void calWeekTemp() {
