@@ -24,3 +24,6 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mybatis/mapper/**/*.xml
 
+app:
+  domain: http://202.113.13.171:8080
+

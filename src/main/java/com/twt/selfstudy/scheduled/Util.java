@@ -3,12 +3,15 @@ package com.twt.selfstudy.scheduled;
 import com.twt.selfstudy.dao.ScheduledTaskDao;
 import com.twt.selfstudy.entity.RawStatus;
 import com.twt.selfstudy.entity.Term;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class Util {
+    @Value("${app.domain}")
+    private String DOMAIN;
 
     static public int getStartCourseNum(String startTime) {
         //before 9:15 means class 1
@@ -84,7 +87,7 @@ public class Util {
 //    public void getTerm() {
 //        RestTemplate restTemplate = new RestTemplateBuilder().build();
 //
-//        String url = "https://api.twt.edu.cn/api/semester";
+//        String url = DOMAIN + "api/semester";
 //
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.MULTIPART_FORM_DATA);

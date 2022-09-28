@@ -5,6 +5,7 @@ import com.twt.selfstudy.entity.CollectionKey;
 import com.twt.selfstudy.entity.LoginResponse;
 import com.twt.selfstudy.entity.Response;
 import com.twt.selfstudy.service.CollectionService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import java.util.Map;
 @Controller
 @CrossOrigin
 public class CollectionController {
+    @Value("${app.domain}")
+    private String DOMAIN;
 
     @Resource
     CollectionService collectionService;
@@ -43,7 +46,7 @@ public class CollectionController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/user/single";
+        String url = DOMAIN + "api/user/single";
         HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -105,7 +108,7 @@ public class CollectionController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/user/single";
+        String url = DOMAIN + "api/user/single";
         HttpHeaders headers = new HttpHeaders();
 
         headers.add("ticket",ticket);
@@ -171,7 +174,7 @@ public class CollectionController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/user/single";
+        String url = DOMAIN + "api/user/single";
         HttpHeaders headers = new HttpHeaders();
 
         headers.add("ticket",ticket);

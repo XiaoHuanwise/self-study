@@ -3,6 +3,7 @@ package com.twt.selfstudy.controller;
 import com.alibaba.fastjson.JSON;
 import com.twt.selfstudy.entity.LoginResponse;
 import com.twt.selfstudy.entity.Response;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,6 +21,8 @@ import java.util.Map;
 @Controller
 @CrossOrigin
 public class LoginController {
+    @Value("${app.domain}")
+    private String DOMAIN;
 
     @PostMapping("/login/common")       //账号密码登录
     @ResponseBody
@@ -34,7 +37,7 @@ public class LoginController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/auth/common";
+        String url = DOMAIN + "api/auth/common";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -102,7 +105,7 @@ public class LoginController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/auth/phone/msg";
+        String url = DOMAIN + "api/auth/phone/msg";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -152,7 +155,7 @@ public class LoginController {
         }
 
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        String url = "https://api.twt.edu.cn/api/auth/phone";
+        String url = DOMAIN + "api/auth/phone";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
